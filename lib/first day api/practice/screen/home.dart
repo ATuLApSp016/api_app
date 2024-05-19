@@ -24,33 +24,39 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Todos'),
-        centerTitle: true,
-      ),
-      body: mTodos != null
-          ? mTodos!.todos!.isNotEmpty
-              ? ListView.builder(
-                  itemCount: mTodos!.todos!.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 5,
-                      color: isCompleted == mTodos!.todos![index].completed  ? Colors.white : Colors.blue.shade200,
-                      child: ListTile(
-                        leading: Text('${mTodos!.todos![index].id}'),
-                        title: Text('${mTodos!.todos![index].todo}'),
-                        subtitle: Text('${mTodos!.todos![index].completed}'),
-                        trailing: Text('${mTodos!.todos![index].userId}'),
-                      ),
-                    );
-                  })
-              :  Center(
-                  child: Lottie.asset('assets/lottie/lottie.json',fit: BoxFit.fill),
-                )
-          :Center(
-        child: SizedBox(width: double.infinity,height: 450,child: Lottie.asset('assets/lottie/lottie.json',fit: BoxFit.fill)),
-      )
-    );
+        appBar: AppBar(
+          title: const Text('Todos'),
+          centerTitle: true,
+        ),
+        body: mTodos != null
+            ? mTodos!.todos!.isNotEmpty
+                ? ListView.builder(
+                    itemCount: mTodos!.todos!.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        elevation: 5,
+                        color: isCompleted == mTodos!.todos![index].completed
+                            ? Colors.white
+                            : Colors.blue.shade200,
+                        child: ListTile(
+                          leading: Text('${mTodos!.todos![index].id}'),
+                          title: Text('${mTodos!.todos![index].todo}'),
+                          subtitle: Text('${mTodos!.todos![index].completed}'),
+                          trailing: Text('${mTodos!.todos![index].userId}'),
+                        ),
+                      );
+                    })
+                : Center(
+                    child: Lottie.asset('assets/lottie/lottie.json',
+                        fit: BoxFit.fill),
+                  )
+            : Center(
+                child: SizedBox(
+                    width: double.infinity,
+                    height: 450,
+                    child: Lottie.asset('assets/lottie/lottie.json',
+                        fit: BoxFit.contain)),
+              ));
   }
 
   _buildTodos() async {
